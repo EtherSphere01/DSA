@@ -16,8 +16,8 @@ using namespace std;
     #endif
 }
 
-int N=100000000;
-bool isprime[100000000];
+int N=9*10000000;
+bool isprime[N+1];
 void prime(){  //Sieve of Eratosthenes(Sieve Algorithm) 
    for(int i=2; i<=N; i++){
       isprime[i] = true;
