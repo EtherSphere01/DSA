@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/* in the main function (int main())
+ The size of ARRAY is int a[10^6]
+ The size of Bool is bool a[10^7]
+ & in the global or out side the main function(void function()) 
+ The size of ARRAY is int a[10^7]
+ The size of Bool is bool a[10^8]
+ */
+
+ void code(){
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+}
+
+int N=100000000;
+bool isprime[100000000];
+void prime(){  //Sieve of Eratosthenes(Sieve Algorithm) 
+   for(int i=2; i<=N; i++){
+      isprime[i] = true;
+   }
+   for(int i=2; i*i<=N; i++){
+      if(isprime[i]==true){
+         for(int j=i*i; j<=N; j+=i){
+            isprime[j] = false;
+         }
+      }
+   }
+} // Time limit for this algorithm is - O(N(log(logN)))
+ // If we use this is main the time is - O(N(log(logN))) + Test case value (Time<10^9)
+
+
+int main()
+{
+
+    
+
+}
