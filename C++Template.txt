@@ -62,17 +62,17 @@ void nthprime(){ //Time for this in main function is O(1) and for this the time 
 }
 
 int M=1000000;
-int primefactor[1000000];
-void factor(){ //Time in the mian function is O(1); & For this the time is like sieve
+int total[1000000];
+void totalfactor(){ //Time in the mian function is O(1); & For this the time is like sieve
    for(int i=2; i<=M; i++){
-      primefactor[i] = 1;
+      total[i] = 1;
    }
    for(int i=2; i*i<=M; i++){
-      if(primefactor[i]==1){
+      if(total[i]==1){
          for(int j=i*i; j<=M; j+=i){
-            if(primefactor[j]!=0){
-               primefactor[i]++;
-               primefactor[j]=0;
+            if(total[j]!=0){
+               total[i]++;
+               total[j]=0;
             }
          }
       }
