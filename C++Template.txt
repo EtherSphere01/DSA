@@ -16,8 +16,8 @@ using namespace std;
     #endif
 }
 
-int N=9*10000000;
-bool isprime[N+1];
+int N=86028121;
+bool isprime[86028121];
 void prime(){  //Sieve of Eratosthenes(Sieve Algorithm) 
    for(int i=2; i<=N; i++){
       isprime[i] = true;
@@ -29,13 +29,58 @@ void prime(){  //Sieve of Eratosthenes(Sieve Algorithm)
          }
       }
    }
+   
 } // Time limit for this algorithm is - O(N(log(logN)))
  // If we use this is main the time is - O(N(log(logN))) + Test case value (Time<10^9)
+
+void primesize(){ 
+   prime();
+   int limit=5000000;
+   int cnt=0;
+   int size=1;
+   for(int i=2;; i++){
+      if(isprime[i]==true){
+         cnt++;
+      }
+      if(cnt==limit){
+         size = i;
+         break;
+      }
+   }
+   cout << size << endl;
+
+}
+
+vector<int>pn;
+void nthprime(){ //Time for this in main function is O(1) and for this the time is like sieve
+   prime();
+   for(int i=2; i<=N; i++){
+      if(isprime[i]==true){
+         pn.push_back(i);
+      }
+   }
+}
+
+int M=1000000;
+int primefactor[1000000];
+void factor(){ //Time in the mian function is O(1); & For this the time is like sieve
+   for(int i=2; i<=M; i++){
+      primefactor[i] = 1;
+   }
+   for(int i=2; i*i<=M; i++){
+      if(primefactor[i]==1){
+         for(int j=i*i; j<=M; j+=i){
+            if(primefactor[j]!=0){
+               primefactor[i]++;
+               primefactor[j]=0;
+            }
+         }
+      }
+   }
+}
 
 
 int main()
 {
-
-    
-
+   
 }
