@@ -33,6 +33,27 @@ void prime(){  //Sieve of Eratosthenes(Sieve Algorithm)
 } // Time limit for this algorithm is - O(N(log(logN)))
  // If we use this is main the time is - O(N(log(logN))) + Test case value (Time<10^9)
 
+
+//for storing all the prime;
+vector<int>pn;
+void nthprime(){ //Time for this in main function is O(1) and for this the time is like sieve
+   prime();
+   for(int i=2; i<=N; i++){
+      if(isprime[i]==true){
+         pn.push_back(i);
+      }
+   }
+}
+
+
+//for the output of any numbers all factors
+bool primefactor[100000000];//the number of prime factor of a number is maximum log2^N 
+void factor(){
+
+}
+
+
+//for the size of nth prime
 void primesize(){ 
    prime();
    int limit=5000000;
@@ -51,16 +72,8 @@ void primesize(){
 
 }
 
-vector<int>pn;
-void nthprime(){ //Time for this in main function is O(1) and for this the time is like sieve
-   prime();
-   for(int i=2; i<=N; i++){
-      if(isprime[i]==true){
-         pn.push_back(i);
-      }
-   }
-}
 
+//for how many number from 1-M have the lowest(n) prime number; 
 int M=1000000;
 int total[1000000];
 void totalfactor(){ //Time in the mian function is O(1); & For this the time is like sieve
@@ -78,7 +91,6 @@ void totalfactor(){ //Time in the mian function is O(1); & For this the time is 
       }
    }
 }
-
 
 int main()
 {
