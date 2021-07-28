@@ -47,10 +47,22 @@ void nthprime(){ //Time for this in main function is O(1) and for this the time 
 
 
 //for the output of any numbers all factors
-bool primefactor[100000000];//the number of prime factor of a number is maximum log2^N 
+int O=1000000;
+int primefactor[100000000];//the number of prime factor of a number is maximum log2^N 
 void factor(){
-
-}
+   for(int i=0; i<=O; i++){
+      primefactor[i]=i;
+   }
+   for (int i=2; i*i<=O; i++){
+      if(primefactor[i]==i){
+         for(int j= i*i; j<=O; j+=i){
+            if(primefactor[j]==j){
+               primefactor[j]=i;
+            }
+         }
+      }
+   }
+}//the time limit for this is like sieve and in the main function the time is O(logN)
 
 
 //for the size of nth prime
@@ -94,5 +106,5 @@ void totalfactor(){ //Time in the mian function is O(1); & For this the time is 
 
 int main()
 {
-   
+
 }
