@@ -1,0 +1,277 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class node {
+public:
+	int data;
+	node* next;
+
+};
+
+void fastelement(node* &head, int newdata) {
+	node* newnode = new node();
+	newnode->data = newdata;
+	newnode->next = head;
+	head = newnode;
+}
+
+void lastelement(node* &head, int newdata) {
+	node* newnode = new node();
+	newnode->data = newdata;
+	newnode->next = NULL;
+
+	if (head == NULL) {
+		head = newnode;
+		return;
+	}
+
+	node* temp = head;
+	while (temp->next != NULL) {
+		temp = temp->next;
+	}
+
+	temp->next = newnode;
+}
+
+void middleelement(int place, node* &head, int newdata) {
+	if (place == 1) {
+		fastelement(head, newdata);
+		return;
+	}
+	node* newnode = new node();
+	newnode->data = newdata;
+	node* temp = head;
+	//place--;
+	for (int i = 0; i < place - 2; i++) {
+		temp = temp->next;
+	}
+	newnode->next = temp->next;
+	temp->next = newnode;
+}
+
+void print(node* head) {
+	while (head != NULL) {
+		cout << head->data << " ";
+		head = head->next;
+	}
+	cout << "NULL" << endl;
+}
+
+void deletehead(node* &head) {
+	node* temp = head;
+	head = head->next;
+	delete temp;
+}
+
+void deleteelement(int place, node* &head) {
+	if (head == NULL || head->next == NULL || place == 1) {
+		deletehead(head);
+		return;
+	}
+	node* temp = head;
+
+	for (int i = 0; i < place - 2; i++) {
+		temp = temp->next;
+	}
+
+	node* todelete = temp->next;
+	temp->next = temp->next->next;
+	delete todelete;
+
+}
+
+node* reverse(node* &head) {
+	if (head == NULL || head->next == NULL) {
+		return head;
+	}
+
+	node* current = head;
+	node* prev = NULL;
+	node* nextptr;
+
+	while ( current != NULL) {
+		nextptr = current->next;
+		current->next = prev;
+
+		prev = current;
+		current = nextptr;
+	}
+	return prev;
+}
+
+node* reverseRecursion(node* &head) {
+	if (head == NULL || head->next == NULL) {
+		return head;
+	}
+
+	node* newhead = reverseRecursion(head->next);
+	head->next->next = head;
+	head->next = NULL;
+	return newhead;
+}
+
+int sizeoflist(node* head) {
+	int count = 0;
+	while (head != NULL) {
+		head = head->next;
+		count++;
+	}
+	return count;
+}
+
+node* reversek(node* &head, int key) {
+	node* current = head;
+	node* previous = NULL;
+	node* nextptr;
+	int count = 0;
+	while (current != NULL && count < key) {
+		nextptr = current->next;
+		current->next = previous;
+
+		previous = current;
+		current = nextptr;
+		count++;
+	}
+
+	if (nextptr != NULL) {
+		head->next = reversek(nextptr, key);
+
+	}
+	return previous;
+}
+
+node* reversegroup(node* &head, int key) {
+	int size = sizeoflist(head);
+
+	node* temp = new node();
+	temp->data = 0;
+	temp->next = head;
+
+	node* current, *previous, *nextptr;
+	current = temp;
+	previous = temp;
+	nextptr = temp;
+
+	while (size >= key) {
+		current = previous->next;
+		nextptr = current->next;
+		for (int i = 1; i < key; i++) {
+			current->next = nextptr->next;
+			nextptr->next = previous->next;
+			previous->next = nextptr;
+			nextptr = current->next;
+		}
+		previous = current;
+		size -= key;
+	}
+	return temp->next;
+
+}
+
+bool iscycle(node* &head) {
+	node* fast = head;
+	node* slow = head;
+
+	while (fast != NULL && fast->next != NULL) {
+		fast = fast->next->next;
+		slow = slow->next;
+		if (fast == slow) return true;
+	}
+	return false;
+}
+
+node* breakcycle(node* &head)
+{
+	node* fast = head;
+	node* slow = head;
+	do
+	{
+		fast = fast->next->next;
+		slow = slow->next;
+	} while (fast != slow);
+
+
+
+	fast = head;
+
+	while (fast->next != slow->next) {
+		fast = fast->next;
+		slow = slow->next;
+	}
+
+	node* temp = slow->next;
+	return temp;
+}
+
+int main()
+{
+	node* head1 = new node();
+	node* head2 = new node();
+	node* head3 = new node();
+	node* head4 = new node();
+	node* head5 = new node();
+	node* head6 = new node();
+	node* head7 = new node();
+	node* head8 = new node();
+
+	head1->data = 1;
+	head1->next = head2;
+	head2->data = 2;
+	head2->next = head3;
+	head3->data = 3;
+	head3->next = head4;
+	head4->data = 4;
+	head4->next = head5;
+	head5->data = 5;
+	head5->next = head6;
+	head6->data = 6;
+	head6->next = head7;
+	head7->data = 7;
+	head7->next = head8;
+	head8->data = 8;
+	head8->next = head4;
+
+	cout << iscycle(head1);
+	cout << endl;
+	node* temp1 = breakcycle(head1);
+	cout << temp1->data;
+
+
+
+
+
+	// head = NULL;
+	// // lastelement(head, 1);
+	// // lastelement(head, 2);
+	// lastelement(head, 3);
+	// lastelement(head, 7);
+	// //print(head);
+	// //fastelement(head, -1);
+	// middleelement(1, head, 2);
+	// lastelement(head, 9);
+	// middleelement(2, head, 1);
+
+	// //print(head);
+	// middleelement(2, head, 4);
+	// lastelement(head, 5);
+	// lastelement(head, 6);
+	// //print(head);
+	// //deleteelement(4, head);
+	// node* newnode = reverse(head);
+
+	// print(newnode);
+
+	// node* newnode1 = reverseRecursion(newnode);
+	// print(newnode1);
+	// int key = 3;
+	// node* newnode2 = reversek(newnode1, key);
+	// print(newnode2);
+
+	// //deletehead(head);
+	// //print(head);
+
+	// int size = 3;
+	// node* group = reversegroup(newnode2, size);
+	// print(group);
+}
+
