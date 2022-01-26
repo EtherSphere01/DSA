@@ -1,0 +1,17 @@
+long long maxisubarraysum(int arr[], int n) {
+	int maxisum = 0;
+	int currsum = 0;
+	int minsum = INT_MIN;
+	bool check = 0;
+	
+	for (int i = 0; i < n; i++) {
+		currsum += arr[i];
+		if (currsum < 0) currsum = 0;
+		maxisum = max(currsum, maxisum);
+
+		if (arr[i] > minsum) minsum = arr[i];
+		if (arr[i] > 0) check = 1;
+	}
+	if (check) return maxisum;
+	else return minsum;
+}
