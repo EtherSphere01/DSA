@@ -1,0 +1,56 @@
+<snippet>
+	<content><![CDATA[
+void merge(int arr[], int start, int mid, int end) {
+	int v[100000];
+	int i = start;
+	int j = mid + 1;
+	int k = start;
+
+	while (i <= mid && j <= end) {
+		if (arr[i] < arr[j]) {
+			v[k] = arr[i];
+			i++;
+		}
+		else {
+			v[k] = arr[j];
+			j++;
+		}
+		k++;
+	}
+
+	if (i > mid) {
+		while (j <= end) {
+			v[k] = arr[j];
+			j++;
+			k++;
+		}
+	}
+	else {
+		while (i <= mid) {
+			v[k] = arr[i];
+			k++;
+			i++;
+		}
+	}
+
+	for (int i = start; i <= end; i++) {
+		arr[i] = v[i];
+	}
+
+}
+
+void merge_sort(int arr[], int start, int end) {
+
+	if (start < end) {
+		int mid = (start + end) / 2;
+		merge_sort(arr, start , mid);
+		merge_sort(arr, mid + 1, end);
+		merge(arr, start, mid, end);
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+<tabTrigger>merge_sort</tabTrigger> -->
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
