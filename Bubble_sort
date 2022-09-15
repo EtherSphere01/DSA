@@ -1,0 +1,28 @@
+//Normal Method
+
+void bubble_sort(int arr[], int size) {
+	for (int i = 0; i < size - 1; i++) {
+		bool swapped = false;
+		for (int j = 0; j < size - 1; j++) {
+			if (arr[j + 1] < arr[j]) {
+				swapped = true;
+				swap(arr[j + 1], arr[j]);
+			}
+		}
+		if (!swapped) break;
+	}
+}
+
+
+//with Recursion method
+
+void bubble_sort_re(int arr[], int size) {
+	if (size == 0) return;
+
+	for (int i = 0; i < size - 1; i++) {
+		if (arr[i + 1] < arr[i]) {
+			swap(arr[i + 1], arr[i]);
+		}
+	}
+	bubble_sort_re(arr, size - 1);
+}
