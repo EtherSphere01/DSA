@@ -1,5 +1,6 @@
-<snippet>
-	<content><![CDATA[
+Passing array --> merge_sort(int arr[], 0 , n-1);
+
+
 void merge(int arr[], int start, int mid, int end) {
 	int v[100000];
 	int i = start;
@@ -48,9 +49,4 @@ void merge_sort(int arr[], int start, int end) {
 		merge(arr, start, mid, end);
 	}
 }
-]]></content>
-	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-<tabTrigger>merge_sort</tabTrigger> -->
-	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<!-- <scope>source.python</scope> -->
-</snippet>
+
