@@ -1,0 +1,37 @@
+//Normal Method
+
+void insertion_sort(int arr[], int size) {
+	for (int i = 1; i < size; i++) {
+		int temp = arr[i];
+		int j = i - 1;
+
+		while (j >= 0 && arr[j] > temp) {
+			arr[j + 1] = arr[j];
+			j--;
+		}
+		arr[j + 1] = temp;
+	}
+}
+
+
+//With Recursion Method
+
+//passing arr--> insertion_sort_re(arr, 1, n);
+
+void insertion_sort_re(int arr[], int start, int size) {
+
+	if (start >= size) return;
+
+	int temp = arr[start];
+	int j = start - 1;
+
+	while (j >= 0 && arr[j] > temp) {
+		arr[j + 1] = arr[j];
+		j--;
+	}
+	arr[j + 1] = temp;
+
+	insertion_sort_re(arr, start + 1, size );
+
+
+}
