@@ -1,0 +1,35 @@
+// Binary tree;
+
+Binary tree creation;
+
+#include <bits/stdc++.h>
+using namespace std;
+//binary tree;
+struct node
+{
+	int data;
+	node* left;
+	node* right;
+
+	node(int val) {
+		data = val;
+		left = right = NULL;
+	}
+
+};
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL); cout.tie(NULL);
+
+
+	node* root = new node(1);
+
+	root->left = new node(2);
+	root->right = new node(3);
+
+	root->left->right = new node(4);
+
+}
+
