@@ -1,7 +1,3 @@
-// Binary tree;
-
-Binary tree creation;
-
 #include <bits/stdc++.h>
 using namespace std;
 //binary tree;
@@ -18,6 +14,47 @@ struct node
 
 };
 
+//print preorder
+void print(int n) {
+	cout << n << " ";
+}
+void preorder(node* &newnode) {
+	if (newnode == NULL) {
+		return;
+	}
+	print(newnode->data);
+	preorder(newnode->left);
+	preorder(newnode->right);
+}
+//time-> O(n)
+/////////////////////////////////////
+
+
+//Post order
+void postorder(node* &newnode) {
+	if (newnode == NULL) {
+		return;
+	}
+	postorder(newnode->left);
+	postorder(newnode->right);
+	print(newnode->data);
+}
+//////////////////////////////////
+
+//Inorder
+
+void inorder(node* &newnode) {
+	if (newnode == NULL) {
+		return;
+	}
+	inorder(newnode->left);
+	print(newnode->data);
+	inorder(newnode->right);
+
+}
+
+//////////////////////////////
+
 int main()
 {
 	ios_base::sync_with_stdio(false);
@@ -27,9 +64,24 @@ int main()
 	node* root = new node(1);
 
 	root->left = new node(2);
-	root->right = new node(3);
+	root->left->left = new node(4);
+	root->left->right = new node (5);
+	root->left->right->left = new node(6);
 
-	root->left->right = new node(4);
+	root->right = new node(3);
+	root->right->left = new node(7);
+	root->right->right = new node(8);
+	root->right->right->left = new node(9);
+	root->right->right->right = new node(10);
+
+	preorder(root);
+	cout << endl;
+
+	postorder(root);
+	cout << endl;
+
+
+	inorder(root);
+	cout << endl;
 
 }
-
