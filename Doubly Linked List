@@ -1,0 +1,158 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct doublenode {
+	int data;
+	doublenode* next;
+	doublenode* prev;
+};
+void print2(doublenode* &head) {
+	doublenode* temp = head;
+	while (temp != NULL) {
+		cout << temp->data << " ";
+		temp = temp->next;
+	}
+	cout << endl;
+
+}
+void printrev(doublenode* &head) {
+	doublenode* temp2 = head;
+	while (temp2->next != NULL) temp2 = temp2->next;
+
+	while (temp2 != NULL) {
+		cout << temp2->data << " ";
+		temp2 = temp2->prev;
+	}
+	cout << endl;
+}
+void firstelement(doublenode* &head, int key) {
+	doublenode * temp = new doublenode();
+	temp->data = key;
+	temp->next = head;
+	temp->prev = NULL;
+	head->prev = temp;
+	head = temp;
+
+}
+
+void middleelement(int place, doublenode* &head, int key) {
+	if (place == 1 || head == NULL || head->next == NULL) {
+		firstelement(head, key);
+		return;
+	}
+
+	doublenode* newnode = new doublenode();
+	newnode->data = key;
+
+	doublenode* temp = head;
+
+	for (int i = 1; i < place - 1 ; i++) {
+		temp = temp->next;
+	}
+
+	newnode->next = temp->next;
+	temp->next->prev = newnode;
+	temp->next = newnode;
+	newnode->prev = temp;
+
+
+}
+
+void deletehead(doublenode* &head) {
+	doublenode* temp = head;
+
+	head = head->next;
+	head->prev = NULL;
+
+	delete temp;
+}
+
+void deletemid(int place, doublenode* &head) {
+	if (place == 1 || head == NULL || head->next == NULL) {
+		deletehead(head);
+		return;
+	}
+
+	doublenode* temp = head;
+
+	for (int i = 1; i < place - 1; i++) {
+		temp = temp->next;
+	}
+
+	doublenode* todelete = temp->next;
+
+	temp->next = todelete->next;
+	todelete->next->prev = temp;
+
+	delete todelete;
+}
+
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL); cout.tie(NULL);
+
+doublenode* first = new doublenode();
+	doublenode* second = new doublenode();
+	doublenode* third = new doublenode();
+	doublenode* fourth = new doublenode();
+	doublenode* fifth = new doublenode();
+	doublenode* sixth = new doublenode();
+
+	first->data = 1;
+	first->next = second;
+	first->prev = NULL;
+
+	second->data = 2;
+	second->next = third;
+	second->prev = first;
+
+	third->data = 3;
+	third->next = fourth;
+	third->prev = second;
+
+	fourth->data = 4;
+	fourth->next = fifth;
+	fourth->prev = third;
+
+	fifth->data = 5;
+	fifth->next = sixth;
+	fifth->prev = fourth;
+
+	sixth->data = 6;
+	sixth->next = NULL;
+	sixth->prev = fifth;
+
+
+	print2(first);
+	printrev(first);
+	cout << endl;
+
+	firstelement(first, 7);
+	print2(first);
+	printrev(first);
+	cout << endl;
+
+	middleelement(3, first, 8);
+	print2(first);
+	printrev(first);
+	cout << endl;
+
+	deletehead(first);
+	print2(first);
+	printrev(first);
+	cout << endl;
+
+
+	deletemid(3, first);
+	print2(first);
+	printrev(first);
+	cout << endl;
+
+
+
+
+
+
+}
