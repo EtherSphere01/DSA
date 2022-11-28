@@ -80,7 +80,7 @@ void searchBTS(node* &root, int key) {
 
 //Insert an element in Binary Search Tree;
 
-void insertBTS(node* &root, int value) {
+void insertBST(node* &root, int value) {
 
 	if (root == NULL) {
 		node* temp = new node();
@@ -144,16 +144,16 @@ int main()
 
 
 	node* insertion = new node(15);
-	insertBTS(insertion, 16);
-	insertBTS(insertion, 10);
-	insertBTS(insertion, 5);
-	insertBTS(insertion, 7);
-	insertBTS(insertion, 20);
-	insertBTS(insertion, 4);
-	insertBTS(insertion, 6);
-	insertBTS(insertion, 11);
-	insertBTS(insertion, 12);
-	insertBTS(insertion, 18);
+	insertBST(insertion, 16);
+	insertBST(insertion, 10);
+	insertBST(insertion, 5);
+	insertBST(insertion, 7);
+	insertBST(insertion, 20);
+	insertBST(insertion, 4);
+	insertBST(insertion, 6);
+	insertBST(insertion, 11);
+	insertBST(insertion, 12);
+	insertBST(insertion, 18);
 
 
 	searchBTS(insertion, 13);
