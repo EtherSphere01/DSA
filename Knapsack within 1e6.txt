@@ -1,0 +1,38 @@
+//////////// when mx is <= 1e6;
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+const ll mx = 1e5 + 123;
+ll dp[123][mx];
+ll price[123], weight[123];
+ll bagsize, productsize;
+
+ll knapsack(ll index, ll currentweight) {
+
+	if (index > productsize)return 0;
+	if (dp[index][currentweight] != -1) return dp[index][currentweight];
+
+	ll ret1 = 0, ret2 = 0;
+
+	if (weight[index] + currentweight <= bagsize)
+		ret1 = price[index] + knapsack(index + 1, weight[index] + currentweight);
+
+	ret2 = knapsack(index + 1, currentweight);
+
+	return dp[index][currentweight] = max ( ret1, ret2);
+}
+
+int main() {
+
+	cin >> productsize >> bagsize;
+
+	for (int i = 1; i <= productsize; i++) {
+		cin >> weight[i] >> price[i];
+	}
+
+	memset(dp, -1, sizeof(dp));
+	cout << knapsack(1, 0)  << endl;
+}
+
