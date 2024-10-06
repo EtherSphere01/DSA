@@ -18,7 +18,7 @@ vector<ll> primeFactor(ll n) {
 }
 
 int main() {
-    int n = 63;
+    int n = 20;
     vector<ll> factors = primeFactor(n);
 
     cout << "Prime Factors of " << n << ":" << endl;
