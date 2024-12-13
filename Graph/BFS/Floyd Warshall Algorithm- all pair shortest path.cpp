@@ -52,6 +52,5 @@ int main()
 // Time Complexity: O(n^3)
 // Space Complexity: O(n^2)
 // also work for negative weights
-// can be used to detect negative cycle
 // can be used to find shortest path between all pairs of nodes
 // can be used to find shortest path between two nodes
